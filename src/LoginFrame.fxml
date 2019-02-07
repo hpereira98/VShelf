@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="600.0" style="" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <VBox layoutX="0.0" layoutY="0.0" prefHeight="553.0" prefWidth="600.0">
+      <children>
+        <Pane prefHeight="552.9999000000025" prefWidth="600.0">
+          <children>
+            <Label layoutX="194.0" layoutY="32.0" text="vSHELF">
+              <font>
+                <Font name="Georgia Bold" size="50.0" />
+              </font>
+            </Label>
+            <ImageView fitHeight="305.999998868522" fitWidth="489.6000061035156" layoutX="55.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="file:/C:/Users/perei/OneDrive/Ambiente%20de%20Trabalho/shelf.png" />
+              </image>
+            </ImageView>
+            <Button blendMode="DIFFERENCE" layoutX="258.0" layoutY="464.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="83.0" style="" text="Login">
+              <font>
+                <Font name="Gadugi" size="18.0" />
+              </font>
+            </Button>
+            <PasswordField layoutX="200.0" layoutY="424.0" prefHeight="28.0" prefWidth="200.0" promptText="Password" />
+            <TextField layoutX="201.0" layoutY="389.0" prefHeight="28.0" prefWidth="200.0" promptText="Username" />
+            <ImageView fitHeight="305.99998474121094" fitWidth="489.5999755859375" layoutX="55.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                <Image url="@../img/shelf.png" />
+              </image>
+            </ImageView>
+            <Label layoutX="486.0" layoutY="520.0" text="New user? " />
+            <Label layoutX="545.0" layoutY="520.0" text="Sign up" textFill="#1400ff" underline="true">
+              <font>
+                <Font size="12.0" />
+              </font>
+            </Label>
+          </children>
+        </Pane>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>
