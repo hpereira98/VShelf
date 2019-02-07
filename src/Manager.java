@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Manager{
+public class Manager implements Serializable{
     private Map<String,User> users;
     private User active;
 
@@ -30,26 +30,29 @@ public class Manager{
         else return false; // login fail : do Y
     }
 
-    private void loadData(){
+    public Manager loadData(){
         File f = new File("manager.txt");
         if (f.exists()) {
             try {
                 FileInputStream fis = new FileInputStream("manager.txt");
                 ObjectInputStream ois = new ObjectInputStream(fis);
 
-                users = (Map<String, User>) ois.readObject();
+                Manager m = (Manager) ois.readObject();
 
                 ois.close();
+
+                return m;
 
 
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
+                return new Manager();
             }
         }
-        else this.users=new HashMap<>();
+        else return new Manager();
     }
 
-    private void saveData() {
+    public void saveData() {
         try {
             FileOutputStream fos = new FileOutputStream("manager.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -59,12 +62,5 @@ public class Manager{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args){
-        Manager manager = new Manager();
-        manager.loadData();
-        //do smth
-        manager.saveData();
     }
 }
