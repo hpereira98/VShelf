@@ -1,4 +1,5 @@
 
+import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +23,20 @@ public class Manager {
 
     public User getUser (String n){
         return users.get(n);
+    }
+
+    public void loadData(){
+
+    }
+
+    public void saveData(){
+
+    }
+
+    public void main (String []args){
+        loadData();
+        //do stuff
+        saveData();
     }
 
 }
