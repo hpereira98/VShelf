@@ -1,10 +1,11 @@
 
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Manager {
+public class Manager{
     private Map<String,User> users;
+    private User active;
 
     public Manager() {
         this.users=new HashMap<>();
@@ -21,22 +22,49 @@ public class Manager {
         }
     }
 
-    public User getUser (String n){
-        return users.get(n);
+    private boolean login (String username, String password){
+        if (users.get(username).getPassword().equals(password)) {
+            this.active=users.get(username); // login successful do X
+            return true;
+        }
+        else return false; // login fail : do Y
     }
 
-    public void loadData(){
+    private void loadData(){
+        File f = new File("manager.txt");
+        if (f.exists()) {
+            try {
+                FileInputStream fis = new FileInputStream("manager.txt");
+                ObjectInputStream ois = new ObjectInputStream(fis);
 
+                users = (Map<String, User>) ois.readObject();
+
+                ois.close();
+
+
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        else this.users=new HashMap<>();
     }
 
-    public void saveData(){
+    private void saveData() {
+        try {
+            FileOutputStream fos = new FileOutputStream("manager.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
 
+            oos.writeObject(this);
+            oos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void main (String []args){
-        loadData();
-        //do stuff
-        saveData();
+    public static void main(String[] args){
+        Manager manager = new Manager();
+        manager.loadData();
+        //do smth
+        manager.saveData();
     }
-
 }

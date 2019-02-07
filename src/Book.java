@@ -9,7 +9,7 @@ public class Book {
 	private int edition;
 	private Type type;
 	private String publisher;
-	private List<String> authors;
+	private String author;
 	private LocalDate added;
 	private boolean read;
 	private LocalDate readDate;
@@ -24,7 +24,7 @@ public class Book {
 		edition=-1;
 		type=null;
 		publisher=null;
-		authors=new ArrayList<>();
+		author="";
 		added=LocalDate.now();
 		read=false;
 		readDate=null;
@@ -38,7 +38,7 @@ public class Book {
 		this.edition=b.getEdition();
 		this.type=b.getType();
 		this.publisher=b.getPublisher();
-		this.authors=b.getAuthors();
+		this.author=b.getAuthor();
 		this.added=b.getAdded();
 		this.read=b.getRead();
 		this.readDate=b.getReadDate();
@@ -47,13 +47,13 @@ public class Book {
 		this.obs=b.getObs();
 	}
 
-	public Book(String name, int year, int edition, Type type, String publisher, List<String> authors, LocalDate added, boolean read, LocalDate readDate, int rating, String obs){
+	public Book(String name, int year, int edition, Type type, String publisher, String author, LocalDate added, boolean read, LocalDate readDate, int rating, String obs){
 		this.name=name;
 		this.year=year;
 		this.edition=edition;
 		this.type=type;
 		this.publisher=publisher;
-		this.authors=authors;
+		this.author=author;
 		this.added=added;
 		this.read=read;
 		this.readDate=readDate;
@@ -83,10 +83,8 @@ public class Book {
 		return this.publisher;
 	}
 
-	public List<String> getAuthors(){
-		List newL = new ArrayList<>();
-		for (String a : authors) newL.add(a);
-		return newL;	
+	public String getAuthor(){
+		return this.author;
 	}
 
 	public LocalDate getAdded(){
@@ -131,8 +129,8 @@ public class Book {
 		this.publisher=p;
 	}
 
-	public void setAuthors(List<String> authors){
-		this.authors=authors;
+	public void setAuthor(String author){
+		this.author=author;
 	}
 
 	public void setAdded(LocalDate a){
