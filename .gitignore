@@ -15,3 +15,7 @@ test/
 *.jar
 *.war
 *.ear
+
+build.xml
+manifest.mf
+nbproject/
