@@ -21,9 +21,13 @@ public class Manager implements Serializable{
             users.put(u.getUsername(),u);
         }
     }
+    
+    public User getUser (String name){
+        return users.get(name);
+    }
 
-    private boolean login (String username, String password){
-        if (users.get(username).getPassword().equals(password)) {
+    public boolean login (String username, String password){
+        if (users.containsKey(username) && users.get(username).getPassword().equals(password)) {
             this.active=users.get(username); // login successful do X
             return true;
         }
