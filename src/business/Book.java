@@ -42,7 +42,6 @@ public class Book {
 		this.added=b.getAdded();
 		this.read=b.getRead();
 		this.rating=b.getRating();
-		this.rating=0;
 		this.obs=b.getObs();
 	}
 

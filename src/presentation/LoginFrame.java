@@ -3,6 +3,7 @@ package presentation;
 import business.*;
 import java.awt.GraphicsEnvironment;
 import java.awt.Window;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
@@ -26,7 +27,7 @@ public class LoginFrame extends javax.swing.JFrame {
      * Creates new form LoginFrame
      */
     public LoginFrame() {
-        mng.addUser(new User("henrique","henrique",0,new HashMap<>()));
+        mng.addUser(new User("henrique","henrique",0,new ArrayList<>()));
         initComponents();
     }
     
@@ -174,7 +175,10 @@ public class LoginFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(new JFrame(), "Welcome to your vShelf, "+username+"!", "LOGIN SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             User u = mng.getUser(username);
-            new UserFrame(u).setVisible(true);
+            
+            UserFrame f = new UserFrame(u);
+            f.setVisible(true);
+            f.setLocationRelativeTo(null);
         }
         
         else {
@@ -184,7 +188,9 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
         this.dispose();
-        new SignUpFrame().setVisible(true);
+        SignUpFrame f= new SignUpFrame(mng);
+        f.setVisible(true);
+        f.setLocationRelativeTo(null);
     }//GEN-LAST:event_signupButtonActionPerformed
 
     /**
@@ -218,7 +224,9 @@ public class LoginFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginFrame().setVisible(true);
+                LoginFrame f = new LoginFrame();
+                f.setVisible(true);
+                f.setLocationRelativeTo(null);
             }
         });
         

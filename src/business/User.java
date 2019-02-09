@@ -5,25 +5,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static java.time.LocalDate.now;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 	private String username;
 	private String password;
-	private int num_books;
-	private Map<Integer,Book> shelf;
-
-	public void rateBook(int book, int val){
-	    this.shelf.get(book).setRating(val);
-    }
+	private List<Book> shelf;
 
     public void addBook (Book book){
-	    this.shelf.put(num_books,book);
-	    this.shelf.get(num_books).setAdded(now());
-	    num_books++;
+	this.shelf.add(book);
+    }
+    
+    public void updateBook(Book newBook,Book book) {
+        this.shelf.remove(book);
+        this.shelf.add(newBook);
     }
 
-    public void removeBook (int book){
-	    this.shelf.remove(book,this.shelf.get(book));
+    public void removeBook (Book book){
+	this.shelf.remove(book);
     }
 
 	// CONSTRUCTORS
@@ -31,21 +31,18 @@ public class User {
 	public User(){
 		this.username="";
 		this.password="";
-		this.num_books=0;
-		this.shelf=new HashMap<>();
+		this.shelf=new ArrayList<>();
 	}
 
-	public User(String username, String password, int num_books, Map<Integer,Book> shelf){
+	public User(String username, String password, int num_books, List<Book> shelf){
 		this.username=username;
 		this.password=password;
-		this.num_books=num_books;
 		this.shelf=shelf;
 	}
 
 	public User(User u){
 		this.username=u.getUsername();
 		this.password=u.getPassword();
-		this.num_books=u.getNumBooks();
 		this.shelf=u.getShelf();
 	}
 
@@ -59,19 +56,14 @@ public class User {
 		return this.password;
 	}
 
-	public int getNumBooks(){
-		return this.num_books;
-	}
+	public List<Book> getShelf(){
+		List<Book> newList = new ArrayList<>();
 
-	public Map<Integer,Book> getShelf(){
-		Map<Integer,Book> newM = new HashMap<>();
-
-		for (int i=0;i<this.num_books;i++){
-			Book b = new Book(this.shelf.get(i));
-			newM.put(i,b);
+		for (Book b : this.shelf){
+			newList.add(b);
 		}
 
-		return newM;
+		return newList;
 	}
 
 	// SETTERS
@@ -84,11 +76,7 @@ public class User {
 		this.password=p;
 	}
 
-	public void setNumBooks(int n){
-		this.num_books=n;
-	}
-
-	public void setShelf (Map<Integer,Book> s){
+	public void setShelf (List<Book> s){
 		this.shelf=s;
 	}
 

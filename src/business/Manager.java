@@ -15,6 +15,10 @@ public class Manager implements Serializable{
     public Manager(Map<String,User> u){
         this.users=u;
     }
+    
+    public boolean userExists(String username) {
+        return this.users.containsKey(username);
+    }
 
     public void addUser (User u) {
         if (users.containsKey(u.getUsername())) System.out.println("User already registered.");

@@ -1,6 +1,7 @@
 package presentation;
 
 import business.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -20,9 +21,6 @@ public class SignUpFrame extends javax.swing.JFrame {
     /**
      * Creates new form SignUpFrame
      */
-    public SignUpFrame() {
-        initComponents();
-    }
 
     SignUpFrame(Manager mng) {
         this.mng=mng;
@@ -123,16 +121,22 @@ public class SignUpFrame extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
-         if (username.equals("") || password.equals("")){
+        if (username.equals("") || password.equals("")){
             JOptionPane.showMessageDialog(new JFrame(), "Not enough data.","EMPTY FIELD(S)", JOptionPane.WARNING_MESSAGE);
         }
         
-         else {
-             User u = new User (username,password,0,new HashMap<>());
+        else if (this.mng.userExists(username)) {
+            JOptionPane.showMessageDialog(new JFrame(), "The user "+username+" already exists.","USERNAME TAKEN", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        else {
+             User u = new User (username,password,0,new ArrayList<>());
              this.mng.addUser(u);
              JOptionPane.showMessageDialog(new JFrame(), "Welcome to vShelf, "+username+"!", "SIGN UP SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
              this.dispose();
-             //new UserFrame(this.mng, u).setVisible(true);
+             UserFrame f = new UserFrame(u);
+             f.setVisible(true);
+             f.setLocationRelativeTo(null);
          }
     }//GEN-LAST:event_signupButtonActionPerformed
 

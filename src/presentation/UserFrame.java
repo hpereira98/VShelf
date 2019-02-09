@@ -8,9 +8,16 @@ package presentation;
 import business.Book;
 import business.User;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.RowSorter.SortKey;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -21,14 +28,27 @@ public class UserFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form UserFrame
+     * @param u
      */
     public UserFrame(User u) {
         this.user=u;
         initComponents();
-        updateTable(u.getShelf());
+        bookTable.setAutoCreateRowSorter(true);
         
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(bookTable.getModel());
+        sorter.setComparator(0, new Comparator<Object>() {
+            public int compare(Object arg0, Object arg1) {
+                return arg0.toString().compareTo(arg1.toString());
+        }
+        });
+
+        bookTable.setRowSorter(sorter);
+        bookTable.getRowSorter().toggleSortOrder(0);
         
+        updateTable(u.getShelf());      
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +66,6 @@ public class UserFrame extends javax.swing.JFrame {
         signoutButton = new javax.swing.JButton();
         addBookButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
-        updateButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VShelf");
@@ -80,6 +99,11 @@ public class UserFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        bookTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(bookTable);
 
         signoutButton.setText("Sign out");
@@ -104,61 +128,48 @@ public class UserFrame extends javax.swing.JFrame {
             }
         });
 
-        updateButton.setText("Update");
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(95, 95, 95)
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(661, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(signoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(updateButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 31, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(saveButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(signoutButton, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addBookButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(signoutButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(signoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(saveButton))
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(addBookButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(updateButton)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(addBookButton)
+                .addContainerGap())
         );
 
         pack();
@@ -166,23 +177,36 @@ public class UserFrame extends javax.swing.JFrame {
 
     private void signoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signoutButtonActionPerformed
         this.dispose();
-        new LoginFrame().setVisible(true);
+        LoginFrame f = new LoginFrame();
+        f.setVisible(true);
+        f.setLocationRelativeTo(null);
     }//GEN-LAST:event_signoutButtonActionPerformed
 
     private void addBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookButtonActionPerformed
-        new AddBookFrame(this.user,this).setVisible(true);
+        AddBookFrame f = new AddBookFrame(this.user,this);
+        f.setVisible(true);
+        f.setLocationRelativeTo(null);
     }//GEN-LAST:event_addBookButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_saveButtonActionPerformed
 
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        updateTable(user.getShelf());
-        this.validate();
-    }//GEN-LAST:event_updateButtonActionPerformed
+    private void bookTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookTableMouseClicked
+        if (evt.getClickCount() == 2) {
+        int selRow = bookTable.getSelectedRow();
+        if (selRow > -1) {
+            Book selectedBook = user.getShelf().get(bookTable.convertRowIndexToModel(selRow));
+            EditBookFrame f = new EditBookFrame(user,this,selectedBook);
+            f.setVisible(true);
+            f.setLocationRelativeTo(null);
+        } else {
+            JOptionPane.showMessageDialog(new JFrame(), "Please select a row.", "NO ITEM SELECTED", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    }//GEN-LAST:event_bookTableMouseClicked
 
-    void updateTable(Map<Integer,Book> books){
+    void updateTable(List<Book> books){
         DefaultTableModel model = (DefaultTableModel) bookTable.getModel();
         Object row_data[] = new Object[5];
 
@@ -190,18 +214,21 @@ public class UserFrame extends javax.swing.JFrame {
         model.setRowCount(0);
 
         // Adiciona novos
-        Collection<Book> aux = books.values();
-        for(Book b : aux){
+        
+        int cont=0;
+        for(Book b : books){
+            cont++;
             row_data[0] = b.getName();
             row_data[1] = b.getAuthor();
             row_data[2] = b.getType();
             row_data[3] = b.getRead();
             if (b.getRead()){
-                row_data[4] = Integer.toString(b.getRating());
+                row_data[4] = String.valueOf(b.getRating());
             }
             else row_data[4] = "-";
             model.addRow(row_data);
         }
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -212,6 +239,5 @@ public class UserFrame extends javax.swing.JFrame {
     private java.awt.Label label2;
     private javax.swing.JButton saveButton;
     private javax.swing.JButton signoutButton;
-    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

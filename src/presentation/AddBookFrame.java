@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 public class AddBookFrame extends javax.swing.JFrame {
     private User user;
     private UserFrame uframe;
-    private Book book;
     /**
      * Creates new form AddBookFrame
      */
@@ -26,7 +25,6 @@ public class AddBookFrame extends javax.swing.JFrame {
     AddBookFrame(User user, UserFrame uf) {
         this.user=user;
         this.uframe=uf;
-        this.book = new Book();
         initComponents();
         ratingLabel.setVisible(false);
         ratingField.setVisible(false);
@@ -76,11 +74,11 @@ public class AddBookFrame extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 11;
-        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridy = 17;
         gridBagConstraints.ipadx = 8;
         gridBagConstraints.ipady = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(57, 28, 11, 0);
+        gridBagConstraints.insets = new java.awt.Insets(49, 16, 22, 0);
         getContentPane().add(addButton, gridBagConstraints);
 
         jLabel2.setText("Edition");
@@ -149,16 +147,16 @@ public class AddBookFrame extends javax.swing.JFrame {
         ratingLabel.setText("Rating");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 32, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 32, 0, 0);
         getContentPane().add(ratingLabel, gridBagConstraints);
 
         jLabel11.setText("Obs");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridy = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 32, 0, 0);
         getContentPane().add(jLabel11, gridBagConstraints);
@@ -175,7 +173,7 @@ public class AddBookFrame extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 209;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 11, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 11, 0, 76);
         getContentPane().add(titleField, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
@@ -184,7 +182,7 @@ public class AddBookFrame extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 209;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 11, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 11, 0, 76);
         getContentPane().add(authorField, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
@@ -193,7 +191,7 @@ public class AddBookFrame extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 210;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 10, 0, 76);
         getContentPane().add(publisherField, gridBagConstraints);
 
         genreField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fantasy", "Western", "Romance", "Thriller", "Mystery", "Erotica", "Detective story", "Dystopia", "Memoir", "Biography", "Play", "Musical", "Satire", "Haiku", "Horror", "DIY (Do It Yourself)", "Dictionary", "Young adult fiction", "Children's books", "Adult Literature" }));
@@ -205,11 +203,11 @@ public class AddBookFrame extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 101;
+        gridBagConstraints.ipadx = 99;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 10, 0, 96);
+        gridBagConstraints.insets = new java.awt.Insets(18, 10, 0, 76);
         getContentPane().add(genreField, gridBagConstraints);
 
         readCheck.addActionListener(new java.awt.event.ActionListener() {
@@ -220,19 +218,18 @@ public class AddBookFrame extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 10, 0, 0);
         getContentPane().add(readCheck, gridBagConstraints);
 
         ratingField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 10, 0, 0);
         getContentPane().add(ratingField, gridBagConstraints);
 
         obsField.setColumns(20);
@@ -241,16 +238,16 @@ public class AddBookFrame extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 196;
-        gridBagConstraints.ipady = 73;
+        gridBagConstraints.ipadx = 194;
+        gridBagConstraints.ipady = 47;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(18, 10, 0, 96);
+        gridBagConstraints.insets = new java.awt.Insets(18, 1, 0, 76);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
         yearField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####"))));
@@ -266,18 +263,18 @@ public class AddBookFrame extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 209;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 11, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 11, 0, 76);
         getContentPane().add(yearField, gridBagConstraints);
 
         editionField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#"))));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 212;
+        gridBagConstraints.ipadx = 210;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 10, 0, 96);
+        gridBagConstraints.insets = new java.awt.Insets(18, 10, 0, 76);
         getContentPane().add(editionField, gridBagConstraints);
 
         pack();
@@ -321,7 +318,7 @@ public class AddBookFrame extends javax.swing.JFrame {
         else {
             Book b = new Book(title,year,edition,type,publisher,author,added,read,rating,obs);
             this.user.addBook(b);
-            JOptionPane.showMessageDialog(new JFrame(), b.getName()+" added with success!", "BOOK ADDED", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "\""+b.getName()+"\" added with success!", "BOOK ADDED", JOptionPane.INFORMATION_MESSAGE);
             this.uframe.updateTable(user.getShelf());
             this.dispose();
         }
