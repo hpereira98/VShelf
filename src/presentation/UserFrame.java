@@ -5,17 +5,29 @@
  */
 package presentation;
 
+import business.Book;
+import business.User;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author perei
  */
 public class UserFrame extends javax.swing.JFrame {
+    private User user;
 
     /**
      * Creates new form UserFrame
      */
-    public UserFrame() {
+    public UserFrame(User u) {
+        this.user=u;
         initComponents();
+        updateTable(u.getShelf());
+        
+        
     }
 
     /**
@@ -50,14 +62,14 @@ public class UserFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title", "Author", "Read", "Rating"
+                "Title", "Author", "Genre", "Read", "Rating"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -153,11 +165,12 @@ public class UserFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void signoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signoutButtonActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        new LoginFrame().setVisible(true);
     }//GEN-LAST:event_signoutButtonActionPerformed
 
     private void addBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookButtonActionPerformed
-        // TODO add your handling code here:
+        new AddBookFrame(this.user,this).setVisible(true);
     }//GEN-LAST:event_addBookButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
@@ -165,44 +178,29 @@ public class UserFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
+        updateTable(user.getShelf());
+        this.validate();
     }//GEN-LAST:event_updateButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    void updateTable(Map<Integer,Book> books){
+        DefaultTableModel model = (DefaultTableModel) bookTable.getModel();
+        Object row_data[] = new Object[5];
+
+        // Remove todos
+        model.setRowCount(0);
+
+        // Adiciona novos
+        Collection<Book> aux = books.values();
+        for(Book b : aux){
+            row_data[0] = b.getName();
+            row_data[1] = b.getAuthor();
+            row_data[2] = b.getRead();
+            row_data[3] = b.getRating();
+            row_data[4] = b.getType();
+            model.addRow(row_data);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserFrame().setVisible(true);
-            }
-        });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBookButton;
     private javax.swing.JTable bookTable;

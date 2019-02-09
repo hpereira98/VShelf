@@ -9,7 +9,7 @@ public class Book {
 	private String name;
 	private int year;
 	private int edition;
-	private Type type;
+	private String type;
 	private String publisher;
 	private String author;
 	private LocalDate added;
@@ -49,7 +49,7 @@ public class Book {
 		this.obs=b.getObs();
 	}
 
-	public Book(String name, int year, int edition, Type type, String publisher, String author, LocalDate added, boolean read, LocalDate readDate, int rating, String obs){
+	public Book(String name, int year, int edition, String type, String publisher, String author, LocalDate added, boolean read, LocalDate readDate, int rating, String obs){
 		this.name=name;
 		this.year=year;
 		this.edition=edition;
@@ -77,7 +77,7 @@ public class Book {
 		return this.edition;
 	}
 
-	public Type getType(){
+	public String getType(){
 		return this.type;
 	}
 
@@ -123,7 +123,7 @@ public class Book {
 		this.edition=e;
 	}
 
-	public void setType(Type t){
+	public void setType(String t){
 		this.type=t;
 	}
 
@@ -136,7 +136,7 @@ public class Book {
 	}
 
 	public void setAdded(LocalDate a){
-		this.added=added;
+		this.added=a;
 	}
 
 	public void setRead(boolean b){
