@@ -14,7 +14,6 @@ public class Book {
 	private String author;
 	private LocalDate added;
 	private boolean read;
-	private LocalDate readDate;
 	private int rating;
 	private String obs;
 
@@ -29,7 +28,6 @@ public class Book {
 		author="";
 		added=LocalDate.now();
 		read=false;
-		readDate=null;
 		int rating=-1;
 		obs="";
 	}
@@ -43,13 +41,12 @@ public class Book {
 		this.author=b.getAuthor();
 		this.added=b.getAdded();
 		this.read=b.getRead();
-		this.readDate=b.getReadDate();
 		this.rating=b.getRating();
 		this.rating=0;
 		this.obs=b.getObs();
 	}
 
-	public Book(String name, int year, int edition, String type, String publisher, String author, LocalDate added, boolean read, LocalDate readDate, int rating, String obs){
+	public Book(String name, int year, int edition, String type, String publisher, String author, LocalDate added, boolean read, int rating, String obs){
 		this.name=name;
 		this.year=year;
 		this.edition=edition;
@@ -58,7 +55,6 @@ public class Book {
 		this.author=author;
 		this.added=added;
 		this.read=read;
-		this.readDate=readDate;
 		this.rating=rating;
 		this.obs=obs;
 	}
@@ -95,10 +91,6 @@ public class Book {
 
 	public boolean getRead(){
 		return this.read;
-	}
-
-	public LocalDate getReadDate(){
-		return this.readDate;
 	}
 
 	public int getRating(){
@@ -141,10 +133,6 @@ public class Book {
 
 	public void setRead(boolean b){
 		this.read=b;
-	}
-
-	public void setReadDate(LocalDate rd){
-		this.readDate=rd;
 	}
 
 	public void setRating(int r){

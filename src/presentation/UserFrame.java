@@ -66,7 +66,7 @@ public class UserFrame extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -194,9 +194,12 @@ public class UserFrame extends javax.swing.JFrame {
         for(Book b : aux){
             row_data[0] = b.getName();
             row_data[1] = b.getAuthor();
-            row_data[2] = b.getRead();
-            row_data[3] = b.getRating();
-            row_data[4] = b.getType();
+            row_data[2] = b.getType();
+            row_data[3] = b.getRead();
+            if (b.getRead()){
+                row_data[4] = Integer.toString(b.getRating());
+            }
+            else row_data[4] = "-";
             model.addRow(row_data);
         }
     }

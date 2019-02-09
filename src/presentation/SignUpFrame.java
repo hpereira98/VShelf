@@ -47,6 +47,7 @@ public class SignUpFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VShelf");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         signupButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

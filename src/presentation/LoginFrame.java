@@ -174,8 +174,7 @@ public class LoginFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(new JFrame(), "Welcome to your vShelf, "+username+"!", "LOGIN SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             User u = mng.getUser(username);
-            new SignUpFrame(this.mng).setVisible(true); // test
-            //new UserFrame(this.mng, u).setVisible(true);
+            new UserFrame(u).setVisible(true);
         }
         
         else {
@@ -199,7 +198,7 @@ public class LoginFrame extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
