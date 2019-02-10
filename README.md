@@ -16,8 +16,7 @@ The app functionalities are:
 * Search an existing book
 
 What's missing yet?
-1. Add search bar to user frame
-2. Add images so vshelf.isPretty()==true.
+* Add images so vshelf.isPretty()==true.
 
 VShelf was built in Java and Swing, using Netbeans as a IDE.
 

@@ -203,6 +203,7 @@ public class LoginFrame extends javax.swing.JFrame {
         SignUpFrame f = new SignUpFrame(mng);
         f.setVisible(true);
         f.setLocationRelativeTo(null);
+        f.setResizable(false);
     }//GEN-LAST:event_signupButtonActionPerformed
 
     /**
@@ -239,6 +240,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 LoginFrame f = new LoginFrame();
                 f.setVisible(true);
                 f.setLocationRelativeTo(null);
+                f.setResizable(false);
             }
         });
 
