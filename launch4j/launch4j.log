@@ -1,0 +1,35 @@
+
+
+Version:	3.12
+CmdLine:	P:\MIEI\Projetos\VShelf\VShelf\launch4j\VShelf.exe --l4j-debug
+WOW64:		yes
+Working dir:	P:\MIEI\Projetos\VShelf\VShelf\launch4j\.
+Java min ver:	1.006.000
+Java max ver:	
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_191\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_191
+Check launcher:	C:\Program Files\Java\jre1.8.0_191\bin\javaw.exe (OK)
+Match:		1.008.000_191
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_191
+Ignore:		1.008.000_191
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+Check:		SOFTWARE\JavaSoft\JRE\10.0.2
+Check launcher:	C:\Program Files\Java\jre-10.0.2\bin\javaw.exe (OK)
+Match:		1.010.000_002
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Check:		SOFTWARE\JavaSoft\JDK\10.0.2
+Ignore:		1.010.000_002
+Check:		SOFTWARE\JavaSoft\JDK\11
+Check launcher:	C:\Program Files\Java\jdk-11\bin\javaw.exe (OK)
+Match:		1.011.000
+Runtime used:	1.011.000 (64-bit)
+Launcher:	C:\Program Files\Java\jdk-11\bin\javaw.exe
+Launcher args:	-jar "P:\MIEI\Projetos\VShelf\VShelf\launch4j\VShelf.exe"
+Args length:	57/32768 chars
+Exit code:	0
