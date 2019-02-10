@@ -41,6 +41,7 @@ public class SignUpFrame extends javax.swing.JFrame {
         usernameField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("VShelf");
@@ -106,6 +107,9 @@ public class SignUpFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 147, 0, 144);
         getContentPane().add(passwordField, gridBagConstraints);
 
+        jLabel3.setText("Imagem");
+        getContentPane().add(jLabel3, new java.awt.GridBagConstraints());
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,6 +150,7 @@ public class SignUpFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton signupButton;
     private javax.swing.JTextField usernameField;
