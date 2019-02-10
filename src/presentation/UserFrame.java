@@ -8,9 +8,10 @@ package presentation;
 import business.Book;
 import business.Manager;
 import business.User;
-import java.awt.Color;
+import java.awt.Toolkit;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +28,7 @@ import javax.swing.table.TableRowSorter;
 public class UserFrame extends javax.swing.JFrame {
     private User user;
     private Manager mng;
+    private List<Book> searchedBooks;
 
     /**
      * Creates new form UserFrame
@@ -35,6 +37,7 @@ public class UserFrame extends javax.swing.JFrame {
     public UserFrame(Manager mng, User u) {
         this.mng = mng;
         this.user = u;
+        this.searchedBooks = u.getShelf();
         initComponents();
         bookTable.setAutoCreateRowSorter(true);
         
@@ -53,16 +56,15 @@ public class UserFrame extends javax.swing.JFrame {
     
     private void saveData(){
         try {
-            FileOutputStream fos = new FileOutputStream("vshelf.txt");
+            FileOutputStream fos = new FileOutputStream(".vshelf.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             
             
             oos.writeObject(this.mng);
             
-            Runtime.getRuntime().exec("attrib +H vshelf.txt");
-            
             oos.close();
             fos.close();
+            
             
         }catch (Exception e) {
             e.printStackTrace();
@@ -235,6 +237,7 @@ public class UserFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(new JFrame(), "Your data has been successfully saved.", "DATA SAVED", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
         LoginFrame f = new LoginFrame();
+        f.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
         f.setVisible(true);
         f.setLocationRelativeTo(null);
         f.setResizable(false);
@@ -242,6 +245,7 @@ public class UserFrame extends javax.swing.JFrame {
 
     private void addBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookButtonActionPerformed
         AddBookFrame f = new AddBookFrame(this.user,this);
+        f.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
         f.setVisible(true);
         f.setLocationRelativeTo(null);
         f.setResizable(false);
@@ -257,8 +261,9 @@ public class UserFrame extends javax.swing.JFrame {
         if (evt.getClickCount() == 2) {
         int selRow = bookTable.getSelectedRow();
         if (selRow > -1) {
-            Book selectedBook = user.getShelf().get(bookTable.convertRowIndexToModel(selRow));
+            Book selectedBook = searchedBooks.get(bookTable.convertRowIndexToModel(selRow));
             EditBookFrame f = new EditBookFrame(user,this,selectedBook);
+            f.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
             f.setVisible(true);
             f.setLocationRelativeTo(null);
             f.setResizable(false);
@@ -279,6 +284,8 @@ public class UserFrame extends javax.swing.JFrame {
                 .filter(c -> c.getName().contains(to_search) || c.getAuthor().contains(to_search) || c.getPublisher().contains(to_search)
                     || c.getObs().contains(to_search) || c.getType().contains(to_search))
                 .collect(Collectors.toList());
+        
+        searchedBooks = new ArrayList<>(books);
 
         updateTable(books);
     }//GEN-LAST:event_searchFieldKeyReleased
@@ -305,6 +312,7 @@ public class UserFrame extends javax.swing.JFrame {
             else row_data[4] = "-";
             model.addRow(row_data);
         }
+        this.searchedBooks = books;
         
     }
     

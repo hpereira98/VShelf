@@ -15,9 +15,6 @@ The app functionalities are:
 * Order book list by title, author, rating, genre, ou read status.
 * Search an existing book
 
-What's missing yet?
-* Add images so vshelf.isPretty()==true.
-
 VShelf was built in Java and Swing, using Netbeans as a IDE.
 
 I'm also going to user Launch4j in order to create a VShelf.exe .

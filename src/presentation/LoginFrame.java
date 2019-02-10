@@ -1,23 +1,13 @@
 package presentation;
 
 import business.*;
-import java.awt.Color;
 
-import java.awt.Graphics;
-import java.awt.Image;
-
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
 
 
 /*
@@ -42,10 +32,10 @@ public class LoginFrame extends javax.swing.JFrame {
     }
         
     private void loadData() {
-        File f = new File("vshelf.txt");
+        File f = new File(".vshelf.txt");
         if (f.isFile()){
             try {
-                FileInputStream fis = new FileInputStream("vshelf.txt");
+                FileInputStream fis = new FileInputStream(".vshelf.txt");
                 ObjectInputStream ois = new ObjectInputStream(fis);
             
                 this.mng = (Manager) ois.readObject();
@@ -196,6 +186,7 @@ public class LoginFrame extends javax.swing.JFrame {
             User u = mng.getUser(username);
 
             UserFrame f = new UserFrame(mng, u);
+            f.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
             f.setVisible(true);
             f.setLocationRelativeTo(null);
         } else {
@@ -206,6 +197,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
         this.dispose();
         SignUpFrame f = new SignUpFrame(mng);
+        f.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
         f.setVisible(true);
         f.setLocationRelativeTo(null);
         f.setResizable(false);
@@ -243,6 +235,7 @@ public class LoginFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 LoginFrame f = new LoginFrame();
+                f.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
                 f.setVisible(true);
                 f.setLocationRelativeTo(null);
                 f.setResizable(false);

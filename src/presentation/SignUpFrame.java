@@ -1,7 +1,7 @@
 package presentation;
 
 import business.*;
-import java.awt.Color;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -154,6 +154,7 @@ public class SignUpFrame extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(new JFrame(), "Welcome to vShelf, "+username+"!", "SIGN UP SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
              this.dispose();
              UserFrame f = new UserFrame(mng,u);
+             f.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
              f.setVisible(true);
              f.setLocationRelativeTo(null);
          }
@@ -166,6 +167,7 @@ public class SignUpFrame extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         this.dispose();
         LoginFrame f = new LoginFrame();
+        f.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
         f.setVisible(true);
         f.setLocationRelativeTo(null);
         f.setResizable(false);
