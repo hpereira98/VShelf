@@ -1,3 +1,0 @@
-FALTA:
-
-- pôr imagens
