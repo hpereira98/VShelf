@@ -41,10 +41,10 @@ public class LoginFrame extends javax.swing.JFrame {
     }
         
     private void loadData() {
-        File f = new File(".vshelf.txt");
+        File f = new File("vshelf.txt");
         if (f.isFile()){
             try {
-                FileInputStream fis = new FileInputStream(".vshelf.txt");
+                FileInputStream fis = new FileInputStream("vshelf.txt");
                 ObjectInputStream ois = new ObjectInputStream(fis);
             
                 this.mng = (Manager) ois.readObject();

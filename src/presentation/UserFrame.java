@@ -52,11 +52,13 @@ public class UserFrame extends javax.swing.JFrame {
     
     private void saveData(){
         try {
-            FileOutputStream fos = new FileOutputStream(".vshelf.txt");
+            FileOutputStream fos = new FileOutputStream("vshelf.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             
             
             oos.writeObject(this.mng);
+            
+            Runtime.getRuntime().exec("attrib +H vshelf.txt");
             
             oos.close();
             fos.close();
