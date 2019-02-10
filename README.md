@@ -19,4 +19,6 @@ What's missing yet?
 1. Add search bar to user frame
 2. Add images so vshelf.isPretty()==true.
 
-It was built in Java and the UI was made using Swing. I developed VShelf in Netbeans.
+VShelf was built in Java and Swing, using Netbeans as a IDE.
+
+I'm also going to user Launch4j in order to create a VShelf.exe .
