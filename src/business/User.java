@@ -1,14 +1,10 @@
 package business;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-
-import static java.time.LocalDate.now;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User implements Serializable{
 	private String username;
 	private String password;
 	private List<Book> shelf;

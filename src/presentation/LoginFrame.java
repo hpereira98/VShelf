@@ -1,36 +1,53 @@
 package presentation;
 
 import business.*;
-import java.awt.GraphicsEnvironment;
-import java.awt.Window;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author perei
  */
 public class LoginFrame extends javax.swing.JFrame {
-    
-    private Manager mng = new Manager();
+
+    private Manager mng;
 
     /**
      * Creates new form LoginFrame
      */
     public LoginFrame() {
-        mng.addUser(new User("henrique","henrique",0,new ArrayList<>()));
+        loadData();
+        mng.addUser(new User("henrique", "henrique", 0, new ArrayList<>()));
         initComponents();
     }
-    
+
+    private void loadData() {
+        File f = new File(".vshelf.txt");
+        if (f.isFile()){
+            try {
+                FileInputStream fis = new FileInputStream(".vshelf.txt");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+            
+                this.mng = (Manager) ois.readObject();
+            
+                ois.close();
+                fis.close();
+            }catch (Exception e){
+            e.printStackTrace();
+            }
+        } else this.mng = new Manager();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -159,36 +176,32 @@ public class LoginFrame extends javax.swing.JFrame {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String username = "";
         String password = "";
-        
-        try{
+
+        try {
             username = usernameField.getText();
             password = new String(passwordField.getPassword()).trim();
         } catch (Exception e) {
-          e.printStackTrace();
+            e.printStackTrace();
         }
-        
-        if (username.equals("") || password.equals("")){
-            JOptionPane.showMessageDialog(new JFrame(), "Not enough data.","EMPTY FIELD(S)", JOptionPane.WARNING_MESSAGE);
-        }
-        
-        else if (mng.login(username,password)){
-            JOptionPane.showMessageDialog(new JFrame(), "Welcome to your vShelf, "+username+"!", "LOGIN SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
+
+        if (username.equals("") || password.equals("")) {
+            JOptionPane.showMessageDialog(new JFrame(), "Not enough data.", "EMPTY FIELD(S)", JOptionPane.WARNING_MESSAGE);
+        } else if (mng.login(username, password)) {
+            JOptionPane.showMessageDialog(new JFrame(), "Welcome to your vShelf, " + username + "!", "LOGIN SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             User u = mng.getUser(username);
-            
-            UserFrame f = new UserFrame(u);
+
+            UserFrame f = new UserFrame(mng, u);
             f.setVisible(true);
             f.setLocationRelativeTo(null);
-        }
-        
-        else {
+        } else {
             JOptionPane.showMessageDialog(new JFrame(), "User does not exist or incorrect password.", "LOGIN FAILED", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void signupButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupButtonActionPerformed
         this.dispose();
-        SignUpFrame f= new SignUpFrame(mng);
+        SignUpFrame f = new SignUpFrame(mng);
         f.setVisible(true);
         f.setLocationRelativeTo(null);
     }//GEN-LAST:event_signupButtonActionPerformed
@@ -219,7 +232,7 @@ public class LoginFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -229,7 +242,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 f.setLocationRelativeTo(null);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

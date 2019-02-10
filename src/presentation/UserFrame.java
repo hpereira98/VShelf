@@ -6,15 +6,14 @@
 package presentation;
 
 import business.Book;
+import business.Manager;
 import business.User;
-import java.util.Collection;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.RowSorter.SortKey;
-import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -25,13 +24,15 @@ import javax.swing.table.TableRowSorter;
  */
 public class UserFrame extends javax.swing.JFrame {
     private User user;
+    private Manager mng;
 
     /**
      * Creates new form UserFrame
      * @param u
      */
-    public UserFrame(User u) {
-        this.user=u;
+    public UserFrame(Manager mng, User u) {
+        this.mng = mng;
+        this.user = u;
         initComponents();
         bookTable.setAutoCreateRowSorter(true);
         
@@ -48,7 +49,21 @@ public class UserFrame extends javax.swing.JFrame {
         updateTable(u.getShelf());      
     }
     
-    
+    private void saveData(){
+        try {
+            FileOutputStream fos = new FileOutputStream(".vshelf.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            
+            
+            oos.writeObject(this.mng);
+            
+            oos.close();
+            fos.close();
+            
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,6 +191,8 @@ public class UserFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void signoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signoutButtonActionPerformed
+        saveData();
+        JOptionPane.showMessageDialog(new JFrame(), "Your data has been successfully saved.", "DATA SAVED", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
         LoginFrame f = new LoginFrame();
         f.setVisible(true);
@@ -189,7 +206,9 @@ public class UserFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addBookButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
+        saveData();        
+        JOptionPane.showMessageDialog(new JFrame(), "Your data has been successfully saved.", "DATA SAVED", JOptionPane.INFORMATION_MESSAGE);
+
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void bookTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookTableMouseClicked

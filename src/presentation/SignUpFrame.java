@@ -134,7 +134,7 @@ public class SignUpFrame extends javax.swing.JFrame {
              this.mng.addUser(u);
              JOptionPane.showMessageDialog(new JFrame(), "Welcome to vShelf, "+username+"!", "SIGN UP SUCCESSFUL", JOptionPane.INFORMATION_MESSAGE);
              this.dispose();
-             UserFrame f = new UserFrame(u);
+             UserFrame f = new UserFrame(mng,u);
              f.setVisible(true);
              f.setLocationRelativeTo(null);
          }

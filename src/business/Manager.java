@@ -6,7 +6,6 @@ import java.util.Map;
 
 public class Manager implements Serializable{
     private Map<String,User> users;
-    private User active;
 
     public Manager() {
         this.users=new HashMap<>();
@@ -21,10 +20,7 @@ public class Manager implements Serializable{
     }
 
     public void addUser (User u) {
-        if (users.containsKey(u.getUsername())) System.out.println("User already registered.");
-        else {
-            users.put(u.getUsername(),u);
-        }
+        users.put(u.getUsername(),u);
     }
     
     public User getUser (String name){
@@ -33,7 +29,6 @@ public class Manager implements Serializable{
 
     public boolean login (String username, String password){
         if (users.containsKey(username) && users.get(username).getPassword().equals(password)) {
-            this.active=users.get(username); // login successful do X
             return true;
         }
         else return false; // login fail : do Y
