@@ -1,7 +1,7 @@
 package presentation;
 
 import business.*;
-import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.io.File;
@@ -28,7 +28,6 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     public LoginFrame() {
         loadData();
-        mng.addUser(new User("henrique", "henrique", 0, new ArrayList<>()));
         initComponents();
     }
 
